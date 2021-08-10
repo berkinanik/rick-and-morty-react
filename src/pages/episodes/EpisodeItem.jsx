@@ -8,6 +8,17 @@ const EpisodeItem = (props) => {
   return (
     <Box>
       <Card sx={{ maxWidth: 280 }}>
+        <Chip
+          sx={{
+            flexShrink: 1,
+            position: 'absolute',
+            color: 'red',
+            fontWeight: 'bold',
+            fontSize: '1.2rem',
+            letterSpacing: '2px',
+          }}
+          label={`#${id}`}
+        />
         <Box
           sx={{
             height: 120,

@@ -6,24 +6,37 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
-import PagesRoot from './tabs/PagesRoot';
+import PagesRoot from './pages/PagesRoot';
 import TopNavBar from './utils/TopNavBar';
 import FilterBar from './filters/FilterBar';
 
 export default function App() {
   const [tabValue, setTabValue] = useState(0);
-  const [characterSearchValue, setCharacterSearchValue] = useState('');
-  const [episodeSearchValue, setEpisodeSearchValue] = useState('');
-  const [genderValue, setGenderValue] = useState('');
-  const [statusValue, setStatusValue] = useState('');
-  const [seasonValue, setSeasonValue] = useState('');
+
+  const [charactersFilters, setCharactersFilters] = useState({
+    page: 1,
+    searchVal: '',
+    gender: '',
+    status: '',
+  });
+  const [episodesFilters, setEpisodesFilters] = useState({
+    page: 1,
+    searchVal: '',
+    season: '',
+  });
 
   const handleCharacterSearch = (event) => {
-    setCharacterSearchValue(event.target.value);
+    setCharactersFilters({
+      ...charactersFilters,
+      searchVal: event.target.value,
+    });
   };
 
   const handleEpisodeSearch = (event) => {
-    setEpisodeSearchValue(event.target.value);
+    setEpisodesFilters({
+      ...episodesFilters,
+      searchVal: event.target.value,
+    });
   };
 
   const handleTabChange = (event) => {
@@ -33,15 +46,24 @@ export default function App() {
   };
 
   const handleGenderChange = (event) => {
-    setGenderValue(event.target.value);
+    setCharactersFilters({
+      ...charactersFilters,
+      gender: event.target.value,
+    });
   };
 
   const handleStatusChange = (event) => {
-    setStatusValue(event.target.value);
+    setCharactersFilters({
+      ...charactersFilters,
+      status: event.target.value,
+    });
   };
 
   const handleSeasonChange = (event) => {
-    setSeasonValue(event.target.value);
+    setEpisodesFilters({
+      ...episodesFilters,
+      season: event.target.value,
+    });
   };
 
   const theme = createTheme({
@@ -72,31 +94,33 @@ export default function App() {
     },
   };
 
-  // TODO Add regex for s01** or s01e03 syntax for episode search
-  // TODO Add search functioanlity
-  // TODO Add select filter functionality
+  // TODO add pagination
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <TopNavBar
         handleSearch={tabValue === 0 ? handleCharacterSearch : handleEpisodeSearch}
-        searchValue={tabValue === 0 ? characterSearchValue : episodeSearchValue}
+        searchValue={tabValue === 0 ? charactersFilters.name : episodesFilters.name}
         placeHolder={tabValue === 0 ? 'Search by Name' : 'Name or Episode (e.g. s2e5)'}
         tabValue={tabValue}
         handleTabChange={handleTabChange}
       />
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <FilterBar
           tabValue={tabValue}
-          genderValue={genderValue}
+          genderValue={charactersFilters.gender}
           handleGenderChange={handleGenderChange}
-          statusValue={statusValue}
+          statusValue={charactersFilters.status}
           handleStatusChange={handleStatusChange}
-          seasonValue={seasonValue}
+          seasonValue={episodesFilters.season}
           handleSeasonChange={handleSeasonChange}
         />
-        <PagesRoot tabValue={tabValue} />
+        <PagesRoot
+          tabValue={tabValue}
+          charactersFilters={charactersFilters}
+          episodesFilters={episodesFilters}
+        />
       </Container>
     </ThemeProvider>
   );

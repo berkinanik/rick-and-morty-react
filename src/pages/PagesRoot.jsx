@@ -27,19 +27,19 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
-// TODO characters and episodes use similar approach in list and listItem components
+// TODO characters and episodes use similar approach in list components
 // TODO for DRY coding common components might be implemented
 
 const PagesRoot = (props) => {
-  const { tabValue } = props;
+  const { tabValue, charactersFilters, episodesFilters } = props;
   return (
     <Container>
       <Box sx={{ my: 2 }}>
         <TabPanel value={tabValue} index={0}>
-          <CharactersRoot />
+          <CharactersRoot charactersFilters={charactersFilters} />
         </TabPanel>
         <TabPanel value={tabValue} index={1}>
-          <EpisodesRoot />
+          <EpisodesRoot episodesFilters={episodesFilters} />
         </TabPanel>
       </Box>
     </Container>
@@ -48,6 +48,8 @@ const PagesRoot = (props) => {
 
 PagesRoot.propTypes = {
   tabValue: PropTypes.number,
+  charactersFilters: PropTypes.object,
+  episodesFilters: PropTypes.object,
 };
 
 export default PagesRoot;
