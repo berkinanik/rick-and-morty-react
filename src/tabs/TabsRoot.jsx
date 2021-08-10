@@ -27,29 +27,30 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
-// TODO characters and episodes use similar approach in list components
-// TODO for DRY coding common components might be implemented
-
-const PagesRoot = (props) => {
-  const { tabValue, charactersFilters, episodesFilters } = props;
+const TabsRoot = (props) => {
+  const { tabValue, charactersFilters, episodesFilters, handlePageChange } = props;
   return (
     <Container>
       <Box sx={{ my: 2 }}>
         <TabPanel value={tabValue} index={0}>
-          <CharactersRoot charactersFilters={charactersFilters} />
+          <CharactersRoot
+            charactersFilters={charactersFilters}
+            handlePageChange={handlePageChange}
+          />
         </TabPanel>
         <TabPanel value={tabValue} index={1}>
-          <EpisodesRoot episodesFilters={episodesFilters} />
+          <EpisodesRoot episodesFilters={episodesFilters} handlePageChange={handlePageChange} />
         </TabPanel>
       </Box>
     </Container>
   );
 };
 
-PagesRoot.propTypes = {
-  tabValue: PropTypes.number,
-  charactersFilters: PropTypes.object,
-  episodesFilters: PropTypes.object,
+TabsRoot.propTypes = {
+  tabValue: PropTypes.number.isRequired,
+  charactersFilters: PropTypes.object.isRequired,
+  episodesFilters: PropTypes.object.isRequired,
+  handlePageChange: PropTypes.func.isRequired,
 };
 
-export default PagesRoot;
+export default TabsRoot;

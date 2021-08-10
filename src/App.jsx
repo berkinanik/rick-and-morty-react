@@ -6,7 +6,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
-import PagesRoot from './pages/PagesRoot';
+import TabsRoot from './tabs/TabsRoot';
 import TopNavBar from './utils/TopNavBar';
 import FilterBar from './filters/FilterBar';
 
@@ -66,6 +66,25 @@ export default function App() {
     });
   };
 
+  const handlePageChange = (event, value) => {
+    switch (tabValue) {
+      case 0:
+        setCharactersFilters({
+          ...charactersFilters,
+          page: value,
+        });
+        break;
+      case 1:
+        setEpisodesFilters({
+          ...episodesFilters,
+          page: value,
+        });
+        break;
+      default:
+        break;
+    }
+  };
+
   const theme = createTheme({
     palette: {
       mode: 'dark',
@@ -94,8 +113,6 @@ export default function App() {
     },
   };
 
-  // TODO add pagination
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -116,10 +133,11 @@ export default function App() {
           seasonValue={episodesFilters.season}
           handleSeasonChange={handleSeasonChange}
         />
-        <PagesRoot
+        <TabsRoot
           tabValue={tabValue}
           charactersFilters={charactersFilters}
           episodesFilters={episodesFilters}
+          handlePageChange={handlePageChange}
         />
       </Container>
     </ThemeProvider>

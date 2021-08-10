@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
 import { Grid, CircularProgress, Typography, Box } from '@material-ui/core';
-import EpisodeItem from './EpisodeItem';
 
-const EpisodesList = (props) => {
-  const { episodesData, error, loading } = props;
+import EpisodeItem from '../episodes/EpisodeItem';
+import CharacterItem from '../characters/CharacterItem';
+// import { tabEnums } from '.';
+
+const ListGrid = (props) => {
+  const { tab, charactersData, episodesData, error, loading } = props;
   if (loading) {
     return (
       <Box
@@ -33,10 +36,10 @@ const EpisodesList = (props) => {
     );
   }
 
-  let episodes = [];
+  let items = [];
 
-  if (episodesData.length > 0) {
-    episodes = episodesData.map((charData) => {
+  if (tab === 'episodes' && episodesData.length > 0) {
+    items = episodesData.map((charData) => {
       const { id, name, episode } = charData;
       const airDate = charData.air_date;
       return (
@@ -45,21 +48,39 @@ const EpisodesList = (props) => {
         </Grid>
       );
     });
+  } else if (tab === 'characters' && charactersData.length > 0) {
+    items = charactersData.map((charData) => {
+      const { id, name, gender, status, image } = charData;
+      return (
+        <Grid item key={id} xs={3}>
+          <CharacterItem
+            id={parseInt(id)}
+            name={name}
+            gender={gender}
+            status={status}
+            image={image}
+          />
+        </Grid>
+      );
+    });
   }
 
   return (
     <>
       <Grid container spacing={1}>
-        {episodes}
+        {items}
       </Grid>
     </>
   );
 };
 
-EpisodesList.propTypes = {
+ListGrid.propTypes = {
+  // tab: PropTypes.oneOf(tabEnums.CHARACTERS, tabEnums.EPISODES),
+  tab: PropTypes.string,
   episodesData: PropTypes.array,
+  charactersData: PropTypes.array,
   error: PropTypes.object,
   loading: PropTypes.bool,
 };
 
-export default EpisodesList;
+export default ListGrid;
