@@ -45,11 +45,11 @@ const CharacterItem = (props) => {
 };
 
 CharacterItem.propTypes = {
-  id: PropTypes.number,
-  name: PropTypes.string,
-  gender: PropTypes.string,
-  status: PropTypes.string,
-  image: PropTypes.string,
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  gender: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
 };
 
 export default CharacterItem;

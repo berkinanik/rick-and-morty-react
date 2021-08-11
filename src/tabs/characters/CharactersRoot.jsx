@@ -5,6 +5,7 @@ import { Container } from '@material-ui/core';
 
 import { getCharactersQuery } from '../../gql/queries';
 import { ListGrid, ControlledPagination } from '../common';
+import tabEnums from '../common/tabEnums';
 
 function CharactersRoot(props) {
   const { charactersFilters, handlePageChange } = props;
@@ -15,15 +16,19 @@ function CharactersRoot(props) {
 
   useEffect(() => {
     if (loading === false && data) {
-      console.log(data);
-      setPageCount(data.characters.info.pages);
       setCharacters(data.characters.results);
+      setPageCount(data.characters.info.pages);
     }
   }, [loading, data, error]);
 
   return (
     <Container>
-      <ListGrid tab="characters" charactersData={characters} error={error} loading={loading} />
+      <ListGrid
+        tab={tabEnums.CHARACTERS}
+        charactersData={characters}
+        error={error}
+        loading={loading}
+      />
       <ControlledPagination
         pageChangeHandler={handlePageChange}
         page={charactersFilters.page}

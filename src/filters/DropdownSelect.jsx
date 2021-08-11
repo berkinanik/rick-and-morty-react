@@ -57,10 +57,10 @@ function DropdownSelect(props) {
 }
 
 DropdownSelect.propTypes = {
-  fieldName: PropTypes.string,
-  value: PropTypes.string,
-  handleChange: PropTypes.func,
-  options: PropTypes.array,
+  fieldName: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  options: PropTypes.array.isRequired,
 };
 
 export default DropdownSelect;

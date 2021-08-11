@@ -14,7 +14,6 @@ const client = new ApolloClient({
 // TODO implement episode pages or redirect to google search e.g. Rick and Morty S01E01
 
 // FIXME cannot use tabEnums in list grid: causes circular import.
-// FIXME pagination should update after filtering.
 
 render(
   <React.StrictMode>

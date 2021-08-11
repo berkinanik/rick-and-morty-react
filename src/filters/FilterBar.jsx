@@ -59,13 +59,13 @@ const FilterBar = (props) => {
 };
 
 FilterBar.propTypes = {
-  tabValue: PropTypes.number,
-  genderValue: PropTypes.string,
-  statusValue: PropTypes.string,
-  seasonValue: PropTypes.string,
-  handleGenderChange: PropTypes.func,
-  handleStatusChange: PropTypes.func,
-  handleSeasonChange: PropTypes.func,
+  tabValue: PropTypes.number.isRequired,
+  genderValue: PropTypes.string.isRequired,
+  statusValue: PropTypes.string.isRequired,
+  seasonValue: PropTypes.string.isRequired,
+  handleGenderChange: PropTypes.func.isRequired,
+  handleStatusChange: PropTypes.func.isRequired,
+  handleSeasonChange: PropTypes.func.isRequired,
 };
 
 export default FilterBar;

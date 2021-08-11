@@ -25,7 +25,7 @@ export default function TextSearch(props) {
 }
 
 TextSearch.propTypes = {
-  handleChange: PropTypes.func,
-  value: PropTypes.string,
-  placeHolder: PropTypes.string,
+  handleChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  placeHolder: PropTypes.string.isRequired,
 };

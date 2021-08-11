@@ -52,10 +52,10 @@ const EpisodeItem = (props) => {
 };
 
 EpisodeItem.propTypes = {
-  id: PropTypes.number,
-  name: PropTypes.string,
-  episode: PropTypes.string,
-  airDate: PropTypes.string,
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  episode: PropTypes.string.isRequired,
+  airDate: PropTypes.string.isRequired,
 };
 
 export default EpisodeItem;

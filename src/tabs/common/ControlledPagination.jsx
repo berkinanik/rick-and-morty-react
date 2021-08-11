@@ -1,13 +1,15 @@
 import PropTypes from 'prop-types';
-import { Stack, Pagination } from '@material-ui/core';
+import { Stack, Pagination, Container } from '@material-ui/core';
 
 function ControlledPagination(props) {
   const { page, pageChangeHandler, pageCount } = props;
 
   return (
-    <Stack spacing={2}>
-      <Pagination count={pageCount} page={page} onChange={pageChangeHandler} />
-    </Stack>
+    <Container sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>
+      <Stack spacing={2}>
+        <Pagination count={pageCount} page={page} onChange={pageChangeHandler} />
+      </Stack>
+    </Container>
   );
 }
 

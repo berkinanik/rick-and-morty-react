@@ -26,11 +26,11 @@ function TopNavBar(props) {
 }
 
 TopNavBar.propTypes = {
-  handleSearch: PropTypes.func,
-  searchValue: PropTypes.string,
-  tabValue: PropTypes.number,
-  handleTabChange: PropTypes.func,
-  placeHolder: PropTypes.string,
+  handleSearch: PropTypes.func.isRequired,
+  searchValue: PropTypes.string.isRequired,
+  tabValue: PropTypes.number.isRequired,
+  handleTabChange: PropTypes.func.isRequired,
+  placeHolder: PropTypes.string.isRequired,
 };
 
 export default TopNavBar;

@@ -28,6 +28,7 @@ export default function App() {
   const handleCharacterSearch = (event) => {
     setCharactersFilters({
       ...charactersFilters,
+      page: 1,
       searchVal: event.target.value,
     });
   };
@@ -35,19 +36,15 @@ export default function App() {
   const handleEpisodeSearch = (event) => {
     setEpisodesFilters({
       ...episodesFilters,
+      page: 1,
       searchVal: event.target.value,
     });
-  };
-
-  const handleTabChange = (event) => {
-    const tabId = event.target.id;
-    const tabIndex = parseInt(tabId.charAt(tabId.length - 1));
-    setTabValue(tabIndex);
   };
 
   const handleGenderChange = (event) => {
     setCharactersFilters({
       ...charactersFilters,
+      page: 1,
       gender: event.target.value,
     });
   };
@@ -55,6 +52,7 @@ export default function App() {
   const handleStatusChange = (event) => {
     setCharactersFilters({
       ...charactersFilters,
+      page: 1,
       status: event.target.value,
     });
   };
@@ -62,8 +60,15 @@ export default function App() {
   const handleSeasonChange = (event) => {
     setEpisodesFilters({
       ...episodesFilters,
+      page: 1,
       season: event.target.value,
     });
+  };
+
+  const handleTabChange = (event) => {
+    const tabId = event.target.id;
+    const tabIndex = parseInt(tabId.charAt(tabId.length - 1));
+    setTabValue(tabIndex);
   };
 
   const handlePageChange = (event, value) => {

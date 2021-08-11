@@ -3,7 +3,7 @@ import { Grid, CircularProgress, Typography, Box } from '@material-ui/core';
 
 import EpisodeItem from '../episodes/EpisodeItem';
 import CharacterItem from '../characters/CharacterItem';
-// import { tabEnums } from '.';
+import tabEnums from './tabEnums';
 
 const ListGrid = (props) => {
   const { tab, charactersData, episodesData, error, loading } = props;
@@ -38,7 +38,7 @@ const ListGrid = (props) => {
 
   let items = [];
 
-  if (tab === 'episodes' && episodesData.length > 0) {
+  if (tab === tabEnums.EPISODES && episodesData.length > 0) {
     items = episodesData.map((charData) => {
       const { id, name, episode } = charData;
       const airDate = charData.air_date;
@@ -48,7 +48,7 @@ const ListGrid = (props) => {
         </Grid>
       );
     });
-  } else if (tab === 'characters' && charactersData.length > 0) {
+  } else if (tab === tabEnums.CHARACTERS && charactersData.length > 0) {
     items = charactersData.map((charData) => {
       const { id, name, gender, status, image } = charData;
       return (
@@ -75,12 +75,11 @@ const ListGrid = (props) => {
 };
 
 ListGrid.propTypes = {
-  // tab: PropTypes.oneOf(tabEnums.CHARACTERS, tabEnums.EPISODES),
-  tab: PropTypes.string,
-  episodesData: PropTypes.array,
-  charactersData: PropTypes.array,
-  error: PropTypes.object,
-  loading: PropTypes.bool,
+  tab: PropTypes.oneOf(tabEnums.CHARACTERS, tabEnums.EPISODES).isRequired,
+  episodesData: PropTypes.array.isRequired,
+  charactersData: PropTypes.array.isRequired,
+  error: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default ListGrid;

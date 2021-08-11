@@ -33,7 +33,7 @@ const getCharactersQuery = (filters) => {
 };
 
 getCharactersQuery.propTypes = {
-  filters: PropTypes.object,
+  filters: PropTypes.object.isRequired,
 };
 
 const getEpisodesQuery = (filters) => {
@@ -74,7 +74,7 @@ const getEpisodesQuery = (filters) => {
 };
 
 getEpisodesQuery.propTypes = {
-  filters: PropTypes.object,
+  filters: PropTypes.object.isRequired,
 };
 
 export { getCharactersQuery, getEpisodesQuery };
